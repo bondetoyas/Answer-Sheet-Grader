@@ -1,0 +1,28 @@
+# Usage:  cp .env.example .env  (fill in SECRET_KEY / ADMIN_PASSWORD)  &&  docker compose up --build
+# App is then at http://localhost:8080  (put a TLS-terminating proxy in front for real deployments)
+services:
+  backend:
+    build:
+      context: ./backend
+      args:
+        WITH_SEMANTIC: ${WITH_SEMANTIC:-false}
+    environment:
+      ENVIRONMENT: production
+      SECRET_KEY: ${SECRET_KEY:?set SECRET_KEY in .env}
+      ADMIN_USERNAME: ${ADMIN_USERNAME:-}
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD:-}
+      TOKEN_TTL_HOURS: ${TOKEN_TTL_HOURS:-12}
+    volumes:
+      - grader-data:/data
+    restart: unless-stopped
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "8080:80"
+    depends_on:
+      - backend
+    restart: unless-stopped
+
+volumes:
+  grader-data:

@@ -1,0 +1,3 @@
+# Optional: semantic (paraphrase) matching. Large download (PyTorch).
+# Without it the grader automatically falls back to keyword-only matching.
+sentence-transformers

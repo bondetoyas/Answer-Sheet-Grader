@@ -1,0 +1,32 @@
+# Frontend
+frontend/node_modules/
+frontend/dist/
+
+# Backend
+backend/__pycache__/
+backend/.venv/
+backend/venv/
+
+# Environment variables
+.env
+*.env
+
+# Python
+*.pyc
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+# Runtime data
+backend/data/
+backend/grader.db
+backend/uploads/*
+!backend/uploads/.gitkeep
+backend/.pytest_cache/
+
+.env
+__pycache__/
